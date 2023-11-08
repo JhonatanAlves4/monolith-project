@@ -1,4 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
+import ProductAdmFacadeFactory from "../factory/facade.factory";
 import { ProductModel } from "../repository/product.model";
 import ProductRepository from "../repository/product.repository";
 import { AddProductInputDto } from "../usecase/add-product/add-product.dto";
@@ -25,12 +26,14 @@ describe("ProductAdmFacade test", () => {
   });
 
   it("should create a product", async () => {
-    const productRepository = new ProductRepository();
-    const addProductUsecase = new AddProductUsecase(productRepository);
-    const productFacade = new ProductAdmFacade({
-      addUseCase: addProductUsecase,
-      stockUseCase: undefined,
-    });
+    // const productRepository = new ProductRepository();
+    // const addProductUsecase = new AddProductUsecase(productRepository);
+    // const productFacade = new ProductAdmFacade({
+    //   addUseCase: addProductUsecase,
+    //   stockUseCase: undefined,
+    // });
+
+    const productFacade = ProductAdmFacadeFactory.create();
 
     const input: AddProductInputDto = {
       id: "1",
