@@ -3,7 +3,10 @@ import Id from "../../../@shared/domain/value-object/id.value-object";
 import InvoiceItems from "../../domain/invoice-items.entity";
 import Invoice from "../../domain/invoice.entity";
 import InvoiceGateway from "../../gateway/invoice.gateway";
-import { GenerateInvoiceUseCaseInputDto } from "./generate-invoice.usecase.dto";
+import {
+  GenerateInvoiceUseCaseInputDto,
+  GenerateInvoiceUseCaseOutputDto,
+} from "./generate-invoice.usecase.dto";
 
 export default class GenerateInvoiceUsecase {
   private _invoiceRepository: InvoiceGateway;
@@ -14,7 +17,7 @@ export default class GenerateInvoiceUsecase {
 
   async execute(
     input: GenerateInvoiceUseCaseInputDto
-  ) {
+  ): Promise<GenerateInvoiceUseCaseOutputDto> {
     const props = {
       id: new Id(),
       name: input.name,
