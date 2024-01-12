@@ -1,3 +1,4 @@
+import Address from "../../../@shared/domain/value-object/address.value-object";
 import Id from "../../../@shared/domain/value-object/id.value-object";
 import Client from "../../domain/client.entity";
 import AddClientUsecase from "./add-client.usecase";
@@ -17,7 +18,15 @@ describe("Add client Usecase unit test", () => {
     const input = {
       name: "Client name",
       email: "client@gmail.com",
-      address: "Rodovia 4",
+      address: new Address({
+        street: "Street",
+        city: "City",
+        complement: "Complement",
+        number: "0298",
+        state: "State",
+        zipCode: "000",
+      }),
+      document: "0297",
     };
 
     const result = await usecase.execute(input);
@@ -27,5 +36,6 @@ describe("Add client Usecase unit test", () => {
     expect(result.name).toEqual(input.name);
     expect(result.email).toEqual(input.email);
     expect(result.address).toEqual(input.address);
+    expect(result.document).toEqual(input.document);
   });
 });

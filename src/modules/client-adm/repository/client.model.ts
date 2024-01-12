@@ -1,4 +1,4 @@
-import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { Column, DataType, Model, PrimaryKey, Table } from "sequelize-typescript";
 
 @Table({
   tableName: "clients",
@@ -15,8 +15,18 @@ export class ClientModel extends Model {
   @Column({ allowNull: false })
   declare email: string;
 
+  @Column({ type: DataType.JSONB, allowNull: false })
+  declare address: {
+    street: string;
+    number: string;
+    complement: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  };
+
   @Column({ allowNull: false })
-  declare address: string;
+  declare document: string;
 
   @Column({ allowNull: false })
   declare createdAt: Date;

@@ -1,3 +1,4 @@
+import Address from "../../@shared/domain/value-object/address.value-object";
 import Id from "../../@shared/domain/value-object/id.value-object";
 import Client from "../domain/client.entity";
 import clientEntity from "../domain/client.entity";
@@ -10,7 +11,15 @@ export default class ClientRepository implements ClientGateway {
       id: client.id.id,
       name: client.name,
       email: client.email,
-      address: client.address,
+      document: client.document,
+      address: {
+        street: client.address.street,
+        city: client.address.city,
+        complement: client.address.complement,
+        number: client.address.number,
+        state: client.address.state,
+        zipCode: client.address.zipCode,
+      },
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,
     });
@@ -19,7 +28,7 @@ export default class ClientRepository implements ClientGateway {
       throw new Error("Error while creating a new client");
     }
   }
-  
+
   async find(id: string): Promise<clientEntity> {
     const client = await ClientModel.findOne({ where: { id } });
 
@@ -31,7 +40,15 @@ export default class ClientRepository implements ClientGateway {
       id: new Id(client.id),
       name: client.name,
       email: client.email,
-      address: client.address,
+      address: new Address({
+        street: client.address.street,
+        city: client.address.city,
+        complement: client.address.complement,
+        number: client.address.number,
+        state: client.address.state,
+        zipCode: client.address.zipCode,
+      }),
+      document: client.document,
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,
     });
