@@ -45,9 +45,6 @@ describe("E2E test for checkout", () => {
     await sequelize.close();
   });
 
-  //@ts-expect-error - no params in constructor
-  const placeOrderUsecase = new PlaceOrderUsecase();
-
   it("should place an order", async () => {
     const invoiceId = new Id();
     //@ts-expect-error - spy on private method
