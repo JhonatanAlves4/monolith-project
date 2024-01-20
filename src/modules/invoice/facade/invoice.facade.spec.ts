@@ -1,12 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
-import Id from "../../@shared/domain/value-object/id.value-object";
 import InvoiceFacadeFactory from "../factory/facade.factory";
 import { InvoiceItemsModel } from "../repository/invoice-items.model";
 import { InvoiceModel } from "../repository/invoice.model";
-import InvoiceRepository from "../repository/invoice.repository";
-import FindInvoiceUsecase from "../usecase/find-invoice/find-invoice.usecase";
-import GenerateInvoiceUsecase from "../usecase/generate-invoice/generate-invoice.usecase";
-import InvoiceFacade from "./invoice.facade";
 import { GenerateInvoiceFacadeInputDto } from "./invoice.facade.interface";
 
 describe("InvoiceFacade test", () => {
@@ -31,8 +26,7 @@ describe("InvoiceFacade test", () => {
   it("should generate an invoice", async () => {
     const facadeUsecase = InvoiceFacadeFactory.create();
 
-    const input = {
-      id: "1",
+    const input: GenerateInvoiceFacadeInputDto = {
       name: "Invoice name",
       document: "Invoice document",
       street: "Invoice street",
