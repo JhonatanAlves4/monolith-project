@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import ProductModel from "./product.model";
+import { ProductModel } from "./product.model";
 import ProductRepository from "./product.repository";
 
 describe("Product repository test", () => {
@@ -65,5 +65,5 @@ describe("Product repository test", () => {
     expect(result.name).toBe("Product 1");
     expect(result.description).toBe("Description 1");
     expect(result.salesPrice).toBe(100);
-  })
+  });
 });
